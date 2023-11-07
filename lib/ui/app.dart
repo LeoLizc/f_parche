@@ -1,3 +1,4 @@
+import 'package:f_parche/ui/pages/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/login', page: () => const LoginPage()),
+        GetPage(name: '/', page: () => SignUpPage()),
         // GetPage(name: '/', page: () => const HomePage()),
         // GetPage(name: '/login', page: () => const LoginPage()),
         // GetPage(name: '/register', page: () => const RegisterPage()),
