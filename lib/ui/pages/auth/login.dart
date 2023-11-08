@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -48,7 +50,7 @@ class LoginPage extends StatelessWidget {
                   children: <Widget>[
                     SvgPicture.asset('assets/icons/Logo.svg'),
                     const Text(
-                      'Sign In',
+                      'Inicio de Sesión',
                       style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                     Column(
@@ -126,10 +128,28 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    const Text(
-                      'Olvidaste tu contraseña? Registrate',
-                      style: TextStyle(fontSize: 10, color: Colors.white),
-                    ),
+                    RichText(
+                        text: TextSpan(
+                      children: <TextSpan>[
+                        const TextSpan(
+                          text: '¿No tienes una cuenta? ',
+                          style: TextStyle(fontSize: 10, color: Colors.white),
+                        ),
+                        TextSpan(
+                          text: 'Registrate',
+                          style: const TextStyle(
+                              fontSize: 10,
+                              color: Colors.white,
+                              decoration: TextDecoration.underline),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Get.toNamed('/register');
+                            },
+                        ),
+                      ],
+                    )
+                        // style: TextStyle(fontSize: 10, color: Colors.white),
+                        ),
                     const SizedBox(
                       height: 50,
                     ),
@@ -151,7 +171,7 @@ class LoginPage extends StatelessWidget {
                             //   backgroundColor: ThemeData().primaryColorDark,
                             // ),
                             child: const Text(
-                              'Login',
+                              'Iniciar Sesión',
                               // style: TextStyle(fontSize: 20, color: Colors.white),
                             ),
                             //aumenta el tamaño del boton
