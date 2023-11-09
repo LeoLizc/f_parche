@@ -1,9 +1,10 @@
-import 'package:f_parche/ui/pages/auth/signup.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'pages/auth/login.dart';
+import 'pages/auth/signup.dart';
+import 'pages/home.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -62,11 +63,23 @@ class MyApp extends StatelessWidget {
 
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => LoginPage()),
+        GetPage(
+          name: '/',
+          page: () => LoginPage(),
+        ),
         // GetPage(name: '/', page: () => const HomePage()),
-        GetPage(name: '/login', page: () => LoginPage()),
-        GetPage(name: '/register', page: () => SignUpPage()),
-        // GetPage(name: '/home', page: () => const HomePage()),
+        GetPage(
+          name: '/login',
+          page: () => LoginPage(),
+        ),
+        GetPage(
+          name: '/register',
+          page: () => SignUpPage(),
+        ),
+        GetPage(
+          name: '/home',
+          page: () => const HomePage(),
+        ),
         // GetPage(name: '/profile', page: () => const ProfilePage()),
         // GetPage(name: '/settings', page: () => const SettingsPage()),
         // GetPage(name: '/about', page: () => const AboutPage()),
