@@ -1,3 +1,4 @@
+import 'package:f_parche/dependencies.dart';
 import 'package:f_parche/ui/app.dart';
 import 'package:flutter/material.dart';
 import 'package:loggy/loggy.dart';
@@ -9,5 +10,7 @@ void main() {
       showColors: true,
     ),
   );
+
+  loadDependencies();
   runApp(const MyApp());
 }
