@@ -1,3 +1,4 @@
+import 'package:f_parche/ui/middlewares/auth_mw.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -76,10 +77,9 @@ class MyApp extends StatelessWidget {
           name: '/register',
           page: () => SignUpPage(),
         ),
-        GetPage(
-          name: '/home',
-          page: () => const HomePage(),
-        ),
+        GetPage(name: '/home', page: () => const HomePage(), middlewares: [
+          ProtectedRoute(),
+        ]),
         // GetPage(name: '/profile', page: () => const ProfilePage()),
         // GetPage(name: '/settings', page: () => const SettingsPage()),
         // GetPage(name: '/about', page: () => const AboutPage()),
