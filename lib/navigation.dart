@@ -21,7 +21,7 @@ abstract class Routes {
 final appPages = [
   GetPage(
     name: '/',
-    page: () => LoginPage(),
+    page: () => const HomePage(),
   ),
   // GetPage(name: '/', page: () => const HomePage()),
   GetPage(
@@ -32,9 +32,13 @@ final appPages = [
     name: Routes.register,
     page: () => SignUpPage(),
   ),
-  GetPage(name: Routes.home, page: () => const HomePage(), middlewares: [
-    ProtectedRoute(),
-  ]),
+  GetPage(
+    name: Routes.home,
+    page: () => const HomePage(),
+    middlewares: [
+      ProtectedRoute(),
+    ],
+  ),
   GetPage(
       name: Routes.parches,
       page: () => const ParchePage()), // TODO Corregir tamaños

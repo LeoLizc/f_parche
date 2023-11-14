@@ -165,6 +165,7 @@ class LoginPage extends StatelessWidget {
                                     content: Text('Procesando datos'),
                                   ),
                                 );
+                                Get.toNamed(Routes.home);
                               }
                             },
                             // style: ElevatedButton.styleFrom(

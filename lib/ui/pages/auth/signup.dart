@@ -1,3 +1,4 @@
+import 'package:f_parche/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -206,6 +207,8 @@ class SignUpPage extends StatelessWidget {
                                     content: Text('Procesando datos'),
                                   ),
                                 );
+
+                                Get.toNamed(Routes.home);
                               }
                             },
                             // style: ElevatedButton.styleFrom(
