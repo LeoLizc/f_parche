@@ -1,4 +1,5 @@
 import 'package:f_parche/navigation.dart';
+import 'package:f_parche/ui/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,8 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Get.find<AuthController>();
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
@@ -207,8 +210,10 @@ class SignUpPage extends StatelessWidget {
                                     content: Text('Procesando datos'),
                                   ),
                                 );
-
-                                Get.toNamed(Routes.home);
+                                authProvider.login();
+                                Get.back(
+                                  closeOverlays: true,
+                                );
                               }
                             },
                             // style: ElevatedButton.styleFrom(

@@ -1,3 +1,4 @@
+import 'package:f_parche/navigation.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
@@ -12,5 +13,6 @@ class AuthController extends GetxController {
   void logout() {
     // implement logout logic here
     _isLoggedIn.value = false;
+    Get.offAllNamed(Routes.home);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:f_parche/navigation.dart';
+import 'package:f_parche/ui/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -8,13 +9,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Get.find<AuthController>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed(Routes.login);
+              authProvider.logout();
             },
             icon: const Icon(Icons.logout),
           ),

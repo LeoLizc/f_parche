@@ -1,4 +1,5 @@
 import 'package:f_parche/navigation.dart';
+import 'package:f_parche/ui/controllers/auth_controller.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,6 +14,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Get.find<AuthController>();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
@@ -165,7 +167,7 @@ class LoginPage extends StatelessWidget {
                                     content: Text('Procesando datos'),
                                   ),
                                 );
-                                Get.toNamed(Routes.home);
+                                authProvider.login();
                               }
                             },
                             // style: ElevatedButton.styleFrom(
