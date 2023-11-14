@@ -8,8 +8,9 @@ class ChatRoomPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sala de Chat'),
-        backgroundColor: Color(0xFFFC6411), // Cambiar el color de la AppBar
+        title: const Text('Sala de Chat'),
+        backgroundColor:
+            const Color(0xFFFC6411), // Cambiar el color de la AppBar
       ),
       body: Column(
         children: [
@@ -17,8 +18,8 @@ class ChatRoomPage extends StatelessWidget {
             child: Container(
               color: Colors.grey[300], // Color de fondo de la sala de chat
               child: ListView(
-                padding: EdgeInsets.all(10.0),
-                children: [
+                padding: const EdgeInsets.all(10.0),
+                children: const [
                   ChatMessage(message: 'Hola, ¿cómo estás?'),
                   ChatMessage(message: '¡Hola! Estoy bien, ¿y tú?'),
                   ChatMessage(message: 'Todo bien, gracias.'),
@@ -28,11 +29,11 @@ class ChatRoomPage extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             color: Colors.white, // Color de fondo del área de entrada de texto
             child: Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: 'Escribe un mensaje...',
@@ -40,7 +41,7 @@ class ChatRoomPage extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.person),
+                  icon: const Icon(Icons.person),
                   onPressed: () {
                     // Agregar la lógica para enviar el mensaje
                   },
@@ -57,23 +58,23 @@ class ChatRoomPage extends StatelessWidget {
 class ChatMessage extends StatelessWidget {
   final String message;
 
-  ChatMessage({required this.message});
+  const ChatMessage({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5.0),
+      margin: const EdgeInsets.symmetric(vertical: 5.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
+          const CircleAvatar(
             backgroundColor: Colors.blue, // Color del avatar
             radius: 20.0,
           ),
-          SizedBox(width: 10.0),
+          const SizedBox(width: 10.0),
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               color: Colors.white, // Color del mensaje
               child: Text(message),
             ),

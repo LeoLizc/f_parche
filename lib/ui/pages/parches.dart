@@ -9,9 +9,10 @@ class ParchePage extends StatelessWidget {
       length: 2, // Número de pestañas
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Chat App'),
-          backgroundColor: Color(0xFFFC6411), // Cambiar el color de la AppBar
-          bottom: TabBar(
+          title: const Text('Chat App'),
+          backgroundColor:
+              const Color(0xFFFC6411), // Cambiar el color de la AppBar
+          bottom: const TabBar(
             tabs: [
               Tab(text: 'Chat'),
               Tab(text: 'Amigos'),
@@ -41,23 +42,22 @@ class ChatTab extends StatelessWidget {
         final friend = planes[index];
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: Color(0xFFFEAA68), // Cambiar el color de fondo a blanco
+            primary:
+                const Color(0xFFFEAA68), // Cambiar el color de fondo a blanco
           ),
           onPressed: () {
             // Agregar la lógica para manejar el botón de amigo aquí.
           },
-          child: Container(
-            child: Row(
-              children: [
-                Icon(friend.icon, size: 50),
-                SizedBox(width: 25),
-                //damos tamaño al texto y color negro
-                Text(friend.name,
-                    style: TextStyle(
-                      fontSize: 50,
-                    )),
-              ],
-            ),
+          child: Row(
+            children: [
+              Icon(friend.icon, size: 50),
+              const SizedBox(width: 25),
+              //damos tamaño al texto y color negro
+              Text(friend.name,
+                  style: const TextStyle(
+                    fontSize: 40,
+                  )),
+            ],
           ),
         );
       },

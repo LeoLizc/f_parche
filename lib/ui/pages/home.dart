@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
               children: [
                 Flexible(
                   flex: 0,
-                  child: Container(
+                  child: SizedBox(
                     width: 140.0,
                     height: 140.0,
                     child: ElevatedButton(
@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFFEAA68),
+                        backgroundColor: const Color(0xFFFEAA68),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                         ),
@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(width: 20.0),
                 Flexible(
                   flex: 0,
-                  child: Container(
+                  child: SizedBox(
                     width: 140.0,
                     height: 140.0,
                     child: ElevatedButton(
@@ -131,7 +131,7 @@ class HomePage extends StatelessWidget {
               children: [
                 Flexible(
                   flex: 0,
-                  child: Container(
+                  child: SizedBox(
                     width: 140.0,
                     height: 140.0,
                     child: ElevatedButton(
@@ -156,7 +156,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(width: 20.0),
                 Flexible(
                   flex: 0,
-                  child: Container(
+                  child: SizedBox(
                     width: 140.0,
                     height: 140.0,
                     child: ElevatedButton(

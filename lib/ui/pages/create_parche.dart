@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CreateParchePage extends StatefulWidget {
+  const CreateParchePage({Key? key}) : super(key: key);
+
   @override
   _CreateParchePageState createState() => _CreateParchePageState();
 }
@@ -9,7 +11,7 @@ class _CreateParchePageState extends State<CreateParchePage> {
   TextEditingController fechaController = TextEditingController();
   TextEditingController horaController = TextEditingController();
   TextEditingController amigosController = TextEditingController();
-  TextEditingController LamigosController = TextEditingController();
+  TextEditingController lAmigosController = TextEditingController();
   TextEditingController directionController = TextEditingController();
 
   @override
@@ -24,8 +26,8 @@ class _CreateParchePageState extends State<CreateParchePage> {
             );
           },
         ),
-        title: Text('Nuevo parche'),
-        backgroundColor: Color(0xFFFC6411),
+        title: const Text('Nuevo parche'),
+        backgroundColor: const Color(0xFFFC6411),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -41,7 +43,7 @@ class _CreateParchePageState extends State<CreateParchePage> {
                     label: 'Fecha',
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: TextFieldWithLabel(
                     controller: directionController,
@@ -64,29 +66,29 @@ class _CreateParchePageState extends State<CreateParchePage> {
                     label: 'Direction',
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text('Buscar'),
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFFFEAA68),
+                    backgroundColor: const Color(0xFFFEAA68),
                   ),
+                  child: const Text('Buscar'),
                 ),
               ],
             ),
             const SizedBox(height: 16),
             TextFieldWithLabel(
-              controller: LamigosController,
+              controller: lAmigosController,
               label: 'Amigos del plan',
               maxLines: 5,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {},
-              child: Text('Crear'),
               style: ElevatedButton.styleFrom(
-                primary: Color(0xFFFEAA68),
+                backgroundColor: const Color(0xFFFEAA68),
               ),
+              child: const Text('Crear'),
             ),
           ],
         ),
@@ -100,7 +102,8 @@ class TextFieldWithLabel extends StatelessWidget {
   final String label;
   final int maxLines;
 
-  TextFieldWithLabel({
+  const TextFieldWithLabel({
+    super.key,
     required this.controller,
     required this.label,
     this.maxLines = 1,
@@ -112,7 +115,7 @@ class TextFieldWithLabel extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(label),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         TextField(
           controller: controller,
           maxLines: maxLines,
