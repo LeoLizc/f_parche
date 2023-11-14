@@ -1,3 +1,4 @@
+import 'package:f_parche/navigation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -143,7 +144,7 @@ class LoginPage extends StatelessWidget {
                               decoration: TextDecoration.underline),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Get.toNamed('/register');
+                              Get.toNamed(Routes.register);
                             },
                         ),
                       ],
