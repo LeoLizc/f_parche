@@ -43,11 +43,13 @@ class HomePage extends StatelessWidget {
           const Text(
             '8:30 P.M.',
             style: TextStyle(
-              fontSize: 24.0,
+              fontSize: 44.0,
               color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Digital Numbers',
             ),
           ),
-          Spacer(flex: 2),
+          const Spacer(flex: 2),
           Expanded(
             flex: 0,
             child: Row(
