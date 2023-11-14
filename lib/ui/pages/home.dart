@@ -1,5 +1,6 @@
 import 'package:f_parche/navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
@@ -54,19 +55,30 @@ class HomePage extends StatelessWidget {
               children: [
                 Flexible(
                   flex: 0,
-                  child: InkWell(
-                    onTap: () {
-                      Get.toNamed(Routes.login);
-                    },
-                    child: Container(
-                      width: 140.0,
-                      height: 140.0,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFEAA68),
-                        border: Border.all(color: Colors.white, width: 4.0),
-                        borderRadius: BorderRadius.circular(25.0),
+                  child: Container(
+                    width: 140.0,
+                    height: 140.0,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('A la lista de amigos'),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFFEAA68),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
                       ),
-                      child: const Icon(size: 50.0, Icons.people),
+                      child: SvgPicture.asset(
+                        'assets/icons/friends.svg',
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.primary,
+                          BlendMode.srcIn,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -76,12 +88,27 @@ class HomePage extends StatelessWidget {
                   child: Container(
                     width: 140.0,
                     height: 140.0,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFEAA68),
-                      border: Border.all(color: Colors.white, width: 4.0),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    child: const Icon(size: 50.0, Icons.map),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Al mapa'),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFFFEAA68),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                        ),
+                        child: SvgPicture.asset(
+                          'assets/icons/map.svg',
+                          colorFilter: ColorFilter.mode(
+                            Theme.of(context).colorScheme.primary,
+                            BlendMode.srcIn,
+                          ),
+                        )),
                   ),
                 ),
               ],
@@ -101,12 +128,22 @@ class HomePage extends StatelessWidget {
                   child: Container(
                     width: 140.0,
                     height: 140.0,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFEAA68),
-                      border: Border.all(color: Colors.white, width: 4.0),
-                      borderRadius: BorderRadius.circular(25.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Agregar amigos'),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFFEAA68),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                      ),
+                      child: const Icon(size: 50.0, Icons.add),
                     ),
-                    child: const Icon(size: 50.0, Icons.add),
                   ),
                 ),
                 SizedBox(width: 20.0),
@@ -115,12 +152,22 @@ class HomePage extends StatelessWidget {
                   child: Container(
                     width: 140.0,
                     height: 140.0,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFEAA68),
-                      border: Border.all(color: Colors.white, width: 4.0),
-                      borderRadius: BorderRadius.circular(25.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('A los mensajes'),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFFEAA68),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                      ),
+                      child: const Icon(size: 50.0, Icons.message),
                     ),
-                    child: const Icon(size: 50.0, Icons.message),
                   ),
                 ),
               ],
