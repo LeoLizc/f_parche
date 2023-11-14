@@ -2,7 +2,7 @@ import 'package:f_parche/navigation.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
-  final _isLoggedIn = false.obs;
+  final _isLoggedIn = true.obs;
   bool get isLoggedIn => _isLoggedIn.value;
 
   void login() {

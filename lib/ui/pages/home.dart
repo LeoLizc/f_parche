@@ -1,3 +1,4 @@
+import 'package:f_parche/navigation.dart';
 import 'package:f_parche/ui/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Container(
-              margin: EdgeInsets.only(top: 40.0),
+              margin: const EdgeInsets.only(top: 40.0),
               width: 120.0,
               height: 120.0,
               decoration: BoxDecoration(
@@ -86,7 +87,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 20.0),
+                const SizedBox(width: 20.0),
                 Flexible(
                   flex: 0,
                   child: Container(
@@ -94,14 +95,15 @@ class HomePage extends StatelessWidget {
                     height: 140.0,
                     child: ElevatedButton(
                         onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Al mapa'),
-                            ),
-                          );
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //   const SnackBar(
+                          //     content: Text('Al mapa'),
+                          //   ),
+                          // );
+                          Get.toNamed(Routes.map);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFFFEAA68),
+                          backgroundColor: const Color(0xFFFEAA68),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25.0),
                           ),
@@ -134,14 +136,15 @@ class HomePage extends StatelessWidget {
                     height: 140.0,
                     child: ElevatedButton(
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Agregar amigos'),
-                          ),
-                        );
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //   const SnackBar(
+                        //     content: Text('Agregar Parche'),
+                        //   ),
+                        // );
+                        Get.toNamed(Routes.create);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFFEAA68),
+                        backgroundColor: const Color(0xFFFEAA68),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                         ),
@@ -150,7 +153,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 20.0),
+                const SizedBox(width: 20.0),
                 Flexible(
                   flex: 0,
                   child: Container(
@@ -158,14 +161,15 @@ class HomePage extends StatelessWidget {
                     height: 140.0,
                     child: ElevatedButton(
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('A los mensajes'),
-                          ),
-                        );
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //   const SnackBar(
+                        //     content: Text('A los Parches'),
+                        //   ),
+                        // );
+                        Get.toNamed(Routes.parches);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFFEAA68),
+                        backgroundColor: const Color(0xFFFEAA68),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                         ),
@@ -182,32 +186,6 @@ class HomePage extends StatelessWidget {
             child: SizedBox(height: 20.0),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CustomSquare extends StatelessWidget {
-  final double size;
-  final IconData icon;
-
-  CustomSquare({required this.size, required this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        color: Color(0xFFFEAA68),
-        border: Border.all(color: Colors.white, width: 4.0),
-      ),
-      child: Center(
-        child: Icon(
-          icon,
-          size: 40.0,
-          color: Colors.black,
-        ),
       ),
     );
   }
