@@ -7,18 +7,8 @@ class MapaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                // Agregar la navegación hacia atrás o cualquier otra acción necesaria.
-              },
-            );
-          },
-        ),
-        title: Text('Mapa'),
-        backgroundColor: Color(0xFFFC6411),
+        title: const Text('Mapa'),
+        backgroundColor: const Color(0xFFFC6411),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,9 +57,9 @@ class MapaPage extends StatelessWidget {
             onPressed: () {},
             //cambiar color
             style: ElevatedButton.styleFrom(
-              primary: Color(0xFFFEAA68),
-              onPrimary: Colors.white,
-              onSurface: Colors.grey,
+              backgroundColor: const Color(0xFFFEAA68),
+              foregroundColor: Colors.white,
+              disabledForegroundColor: Colors.grey,
             ),
             child: const Text('Enviar'),
           ),
