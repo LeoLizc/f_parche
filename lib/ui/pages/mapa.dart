@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapaPage extends StatelessWidget {
   const MapaPage({Key? key}) : super(key: key);
@@ -49,7 +50,17 @@ class MapaPage extends StatelessWidget {
               child: Container(
                 height: MediaQuery.of(context).size.width * 0.90,
                 width: MediaQuery.of(context).size.width * 0.90,
-                color: Colors.black,
+                // color: Colors.black,
+                child: GoogleMap(
+                  mapType: MapType.hybrid,
+                  initialCameraPosition: const CameraPosition(
+                    target: LatLng(10.933721912132299, -74.77986178452828),
+                    zoom: 15,
+                  ),
+                  compassEnabled: true,
+                  myLocationEnabled: true,
+                  onMapCreated: (_) {},
+                ),
               ),
             ),
           ),
