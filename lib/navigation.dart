@@ -39,7 +39,7 @@ final appPages = [
   ),
   GetPage(
     name: Routes.create,
-    page: () => CreateParchePage(),
+    page: () => const CreateParchePage(),
     middlewares: [ProtectedRoute()],
   ),
   GetPage(

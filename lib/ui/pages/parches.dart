@@ -31,6 +31,8 @@ class ParchePage extends StatelessWidget {
 }
 
 class ChatTab extends StatelessWidget {
+  ChatTab({super.key});
+
   final List<Planes> planes = [
     Planes('Super salida', Icons.people),
   ];
@@ -42,7 +44,7 @@ class ChatTab extends StatelessWidget {
         final friend = planes[index];
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary:
+            backgroundColor:
                 const Color(0xFFFEAA68), // Cambiar el color de fondo a blanco
           ),
           onPressed: () {
@@ -66,6 +68,8 @@ class ChatTab extends StatelessWidget {
 }
 
 class FriendsTab extends StatelessWidget {
+  FriendsTab({super.key});
+
   final List<Amigos> amigos = [
     Amigos('John', Icons.person),
     Amigos('Alice', Icons.person),
@@ -84,23 +88,22 @@ class FriendsTab extends StatelessWidget {
         final friend = amigos[index];
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: Color(0xFFFEAA68), // Cambiar el color de fondo a blanco
+            backgroundColor:
+                const Color(0xFFFEAA68), // Cambiar el color de fondo a blanco
           ),
           onPressed: () {
             // Agregar la lógica para manejar el botón de amigo aquí.
           },
-          child: Container(
-            child: Row(
-              children: [
-                Icon(friend.icon),
-                SizedBox(width: 8),
-                //damos tamaño al texto y color negro
-                Text(friend.name,
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-              ],
-            ),
+          child: Row(
+            children: [
+              Icon(friend.icon),
+              const SizedBox(width: 8),
+              //damos tamaño al texto y color negro
+              Text(friend.name,
+                  style: const TextStyle(
+                    fontSize: 20,
+                  )),
+            ],
           ),
         );
       },
