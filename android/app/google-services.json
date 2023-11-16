@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "285841454825",
+    "firebase_url": "https://f-parche-project-default-rtdb.firebaseio.com",
+    "project_id": "f-parche-project",
+    "storage_bucket": "f-parche-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285841454825:android:b50ca884436a99a1dbe278",
+        "android_client_info": {
+          "package_name": "com.example.f_parche"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt7ukkoLkQG6xBG_g0E_G0CZoeBVIiBAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
