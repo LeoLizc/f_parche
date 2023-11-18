@@ -17,6 +17,11 @@ class User {
     this.username,
     required this.email,
   });
+
+  @override
+  String toString() {
+    return 'User(id: $id, username: $username, email: $email)';
+  }
 }
 
 /// Represents the result of an authentication attempt.
