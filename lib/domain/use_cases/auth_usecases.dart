@@ -8,12 +8,22 @@ class AuthUsecases {
 
   AuthUsecases(this._authService);
 
-  Future<void> signInWithEmailAndPassword(String email, String password) async {
-    await _authService.signInWithEmailAndPassword(email, password);
+  Future<bool> signInWithEmailAndPassword(String email, String password) async {
+    try {
+      await _authService.signInWithEmailAndPassword(email, password);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
-  Future<void> signUpWithEmailAndPassword(String email, String password) async {
-    await _authService.createUserWithEmailAndPassword(email, password);
+  Future<bool> signUpWithEmailAndPassword(String email, String password) async {
+    try {
+      await _authService.createUserWithEmailAndPassword(email, password);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   Future<void> signOut() async {

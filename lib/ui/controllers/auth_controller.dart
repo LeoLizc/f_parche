@@ -20,21 +20,33 @@ class AuthController extends GetxService {
 
     _authUseCases.subscribeToAuthChanges((user) {
       if (user == null) {
+        _isLoggedIn.value = false;
         Get.offAllNamed(Routes.home);
       } else {
+        _isLoggedIn.value = true;
         Get.offAllNamed(Routes.home);
       }
     });
   }
 
-  void login() {
+  Future<bool> login({
+    required String email,
+    required String password,
+  }) {
     // implement login logic here
-    _isLoggedIn.value = true;
+    return _authUseCases.signInWithEmailAndPassword(email, password);
+  }
+
+  Future<bool> register({
+    required String email,
+    required String password,
+  }) {
+    // implement register logic here
+    return _authUseCases.signUpWithEmailAndPassword(email, password);
   }
 
   void logout() {
     // implement logout logic here
-    _isLoggedIn.value = false;
-    Get.offAllNamed(Routes.home);
+    _authUseCases.signOut();
   }
 }

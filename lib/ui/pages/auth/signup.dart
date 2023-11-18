@@ -209,9 +209,9 @@ class SignUpPage extends StatelessWidget {
                                     content: Text('Procesando datos'),
                                   ),
                                 );
-                                authProvider.login();
-                                Get.back(
-                                  closeOverlays: true,
+                                authProvider.register(
+                                  email: _emailController.text,
+                                  password: _passwordController.text,
                                 );
                               }
                             },

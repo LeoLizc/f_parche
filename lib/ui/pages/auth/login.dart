@@ -167,7 +167,10 @@ class LoginPage extends StatelessWidget {
                                     content: Text('Procesando datos'),
                                   ),
                                 );
-                                authProvider.login();
+                                authProvider.login(
+                                  email: _userController.text,
+                                  password: _passwordController.text,
+                                );
                               }
                             },
                             // style: ElevatedButton.styleFrom(
