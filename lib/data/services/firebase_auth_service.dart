@@ -10,7 +10,7 @@ class FirebaseAuthService implements AuthService {
     return _firebaseAuth.authStateChanges().map((fb.User? user) {
       return user == null
           ? null
-          : User(id: user.uid, email: user.email!, username: user.displayName!);
+          : User(id: user.uid, email: user.email!, username: user.displayName);
     });
   }
 

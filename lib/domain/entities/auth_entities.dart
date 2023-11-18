@@ -9,12 +9,12 @@ class Credentials {
 /// Represents an authenticated user.
 class User {
   final String id;
-  final String username;
+  final String? username;
   final String email;
 
   User({
     required this.id,
-    required this.username,
+    this.username,
     required this.email,
   });
 }
