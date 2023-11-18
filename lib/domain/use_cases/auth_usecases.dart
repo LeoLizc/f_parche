@@ -17,9 +17,17 @@ class AuthUsecases {
     }
   }
 
-  Future<bool> signUpWithEmailAndPassword(String email, String password) async {
+  Future<bool> signUpWithEmailAndPassword(
+    String username,
+    String email,
+    String password,
+  ) async {
     try {
-      await _authService.createUserWithEmailAndPassword(email, password);
+      await _authService.createUserWithEmailAndPassword(
+        username,
+        email,
+        password,
+      );
       return true;
     } catch (e) {
       return false;
@@ -30,7 +38,7 @@ class AuthUsecases {
     return await _authService.signOut();
   }
 
-  Future<User> getCurrentUser() async {
+  Future<User?> getCurrentUser() async {
     return await _authService.getCurrentUser();
   }
 

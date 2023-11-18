@@ -36,11 +36,12 @@ class AuthController extends GetxService {
   }
 
   Future<bool> register({
+    required String username,
     required String email,
     required String password,
   }) {
     // implement register logic here
-    return _authUseCases.signUpWithEmailAndPassword(email, password);
+    return _authUseCases.signUpWithEmailAndPassword(username, email, password);
   }
 
   void logout() {

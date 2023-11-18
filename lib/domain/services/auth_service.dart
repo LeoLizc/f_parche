@@ -10,7 +10,11 @@ abstract class AuthService {
   /// Creates a new user with the provided email and password.
   ///
   /// Returns a [Future] that completes with the created [User].
-  Future<User> createUserWithEmailAndPassword(String email, String password);
+  Future<User> createUserWithEmailAndPassword(
+    String username,
+    String email,
+    String password,
+  );
 
   /// Signs out the currently authenticated user.
   ///
@@ -21,7 +25,7 @@ abstract class AuthService {
   Stream<User?> get authStateChanges;
 
   /// Returns a [Future] that completes with the currently authenticated [User].
-  Future<User> getCurrentUser();
+  Future<User?> getCurrentUser();
 
   /// Returns a [Future] that completes with the a boolean representing if the user is logged in.
   Future<bool> isLoggedIn();

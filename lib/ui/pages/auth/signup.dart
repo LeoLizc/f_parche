@@ -210,6 +210,7 @@ class SignUpPage extends StatelessWidget {
                                   ),
                                 );
                                 authProvider.register(
+                                  username: _userController.text,
                                   email: _emailController.text,
                                   password: _passwordController.text,
                                 );

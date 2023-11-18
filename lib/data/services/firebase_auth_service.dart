@@ -8,12 +8,15 @@ class FirebaseAuthService implements AuthService {
   @override
   Stream<User?> get authStateChanges {
     return _firebaseAuth.authStateChanges().map((fb.User? user) {
-      return user == null ? null : User(id: user.uid, email: user.email!);
+      return user == null
+          ? null
+          : User(id: user.uid, email: user.email!, username: user.displayName!);
     });
   }
 
   @override
   Future<User> createUserWithEmailAndPassword(
+    String username,
     String email,
     String password,
   ) async {
@@ -22,13 +25,25 @@ class FirebaseAuthService implements AuthService {
       password: password,
     );
 
-    return User(id: authResult.user!.uid, email: authResult.user!.email!);
+    await authResult.user!.updateDisplayName(username);
+
+    return User(
+      id: authResult.user!.uid,
+      email: authResult.user!.email!,
+      username: username,
+    );
   }
 
   @override
-  Future<User> getCurrentUser() async {
+  Future<User?> getCurrentUser() async {
     final fb.User? user = _firebaseAuth.currentUser;
-    return User(id: user!.uid, email: user.email!);
+    return user == null
+        ? null
+        : User(
+            id: user.uid,
+            email: user.email!,
+            username: user.displayName!,
+          );
   }
 
   @override
@@ -38,7 +53,11 @@ class FirebaseAuthService implements AuthService {
       password: password,
     );
 
-    return User(id: authResult.user!.uid, email: authResult.user!.email!);
+    return User(
+      id: authResult.user!.uid,
+      email: authResult.user!.email!,
+      username: authResult.user!.displayName!,
+    );
   }
 
   @override
