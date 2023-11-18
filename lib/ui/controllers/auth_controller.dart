@@ -1,3 +1,4 @@
+import 'package:f_parche/domain/entities/auth_entities.dart';
 import 'package:f_parche/domain/use_cases/auth_usecases.dart';
 import 'package:f_parche/navigation.dart';
 import 'package:get/get.dart';
@@ -47,5 +48,10 @@ class AuthController extends GetxService {
   void logout() {
     // implement logout logic here
     _authUseCases.signOut();
+  }
+
+  Future<User?> getCurrentUser() {
+    // implement getCurrentUser logic here
+    return _authUseCases.getCurrentUser();
   }
 }
