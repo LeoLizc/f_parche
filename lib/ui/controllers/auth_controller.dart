@@ -19,11 +19,9 @@ class AuthController extends GetxService {
     super.onInit();
 
     _authUseCases.subscribeToAuthChanges((user) {
-      if (user == null) {
-        _isLoggedIn.value = false;
-        Get.offAllNamed(Routes.home);
-      } else {
-        _isLoggedIn.value = true;
+      final bool isLoggedIn = user != null;
+      if (isLoggedIn != _isLoggedIn.value) {
+        _isLoggedIn.value = isLoggedIn;
         Get.offAllNamed(Routes.home);
       }
     });
