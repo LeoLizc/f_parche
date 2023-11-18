@@ -23,7 +23,10 @@ class AuthController extends GetxService {
       final bool isLoggedIn = user != null;
       if (isLoggedIn != _isLoggedIn.value) {
         _isLoggedIn.value = isLoggedIn;
-        Get.offAllNamed(Routes.home);
+        // navigate to home if not already in that route
+        if (Get.currentRoute != Routes.home) {
+          Get.offAllNamed(Routes.home);
+        }
       }
     });
   }
