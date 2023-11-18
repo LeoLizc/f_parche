@@ -43,4 +43,10 @@ class FirebaseAuthService implements AuthService {
   Future<void> signOut() async {
     return await _firebaseAuth.signOut();
   }
+
+  @override
+  Future<bool> isLoggedIn() async {
+    final currentUser = _firebaseAuth.currentUser;
+    return currentUser != null;
+  }
 }

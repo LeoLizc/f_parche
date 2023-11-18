@@ -22,4 +22,7 @@ abstract class AuthService {
 
   /// Returns a [Future] that completes with the currently authenticated [User].
   Future<User> getCurrentUser();
+
+  /// Returns a [Future] that completes with the a boolean representing if the user is logged in.
+  Future<bool> isLoggedIn();
 }

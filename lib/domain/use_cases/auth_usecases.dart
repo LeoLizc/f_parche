@@ -28,4 +28,8 @@ class AuthUsecases {
       void Function(User?) onData) {
     return _authService.authStateChanges.listen(onData);
   }
+
+  Future<bool> isLoggedIn() async {
+    return await _authService.isLoggedIn();
+  }
 }
