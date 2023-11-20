@@ -93,4 +93,30 @@ class Parche {
       'ubicacion': location.toMap(),
     };
   }
+
+  String toJson() => jsonEncode(toMap());
+
+  Parche copyWith({
+    String? key,
+    List<Member>? members,
+    String? name,
+    String? description,
+    String? image,
+    String? creator,
+    String? creationDate,
+    String? meetingDate,
+    Location? location,
+  }) {
+    return Parche(
+      key: key ?? this.key,
+      members: members ?? this.members,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      image: image ?? this.image,
+      creator: creator ?? this.creator,
+      creationDate: creationDate ?? this.creationDate,
+      meetingDate: meetingDate ?? this.meetingDate,
+      location: location ?? this.location,
+    );
+  }
 }
