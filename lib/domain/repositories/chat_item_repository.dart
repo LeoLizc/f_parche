@@ -6,12 +6,12 @@ abstract class ChatItemRepository {
   /// Retrieves a list of chat items for the specified user.
   ///
   /// Returns a list of [ChatItem] objects.
-  List<ChatItem> getChatItems(String userKey);
+  Future<List<ChatItem>> getChatItems(String userKey);
 
   /// Creates a new chat item for the specified user.
   ///
   /// Returns the created [ChatItem].
-  ChatItem createChatItem(String userKey, ChatItem chatItem);
+  Future<ChatItem> createChatItem(String userKey, ChatItem chatItem);
 
   /// Listens for updates to a specific chat item for the specified user.
   ///

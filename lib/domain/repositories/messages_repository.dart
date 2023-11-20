@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:f_parche/domain/entities/message.dart';
 
 abstract class MessagesRepository {
-  List<Message> getMessagesList(String chatId);
-  Message createMessage(String chatId, Message message);
+  Future<List<Message>> getMessagesList(String chatId);
+  Future<Message> createMessage(String chatId, Message message);
 
   StreamSubscription<List<Message>> listenMessages(
     String chatId,
