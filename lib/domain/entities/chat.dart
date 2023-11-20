@@ -9,7 +9,7 @@ class ChatItem {
   ChatItem({
     required this.parcheKey,
     this.lastMessage,
-    this.read = false,
+    this.read = true,
   });
 
   factory ChatItem.fromMap(Map<String, dynamic> map, String parcheKey) {
