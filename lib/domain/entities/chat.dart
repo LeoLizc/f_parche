@@ -33,6 +33,19 @@ class ChatItem {
   }
 
   String toJson() => jsonEncode(toMap());
+
+  ChatItem copyWith({
+    String? key,
+    MessagePreview? lastMessage,
+    bool? read,
+  }) {
+    //? Should it be a deep copy?
+    return ChatItem(
+      parcheKey: key ?? parcheKey,
+      lastMessage: lastMessage ?? this.lastMessage,
+      read: read ?? this.read,
+    );
+  }
 }
 
 class Chat {
@@ -73,4 +86,17 @@ class Chat {
   }
 
   String toJson() => jsonEncode(toMap());
+
+  Chat copyWith({
+    String? key,
+    String? chatName,
+    List<Message>? messages,
+  }) {
+    //? Should it be a deep copy?
+    return Chat(
+      parcheKey: key ?? parcheKey,
+      chatName: chatName ?? this.chatName,
+      messages: messages ?? this.messages,
+    );
+  }
 }

@@ -73,4 +73,20 @@ class Message {
   }
 
   String toJson() => jsonEncode(toMap());
+
+  Message copyWith({
+    String? key,
+    String? message,
+    String? sender,
+    String? created,
+    String? edited,
+  }) {
+    return Message(
+      key: key ?? this.key,
+      message: message ?? this.message,
+      sender: sender ?? this.sender,
+      created: created ?? this.created,
+      edited: edited ?? this.edited,
+    );
+  }
 }
