@@ -18,14 +18,6 @@ class _CreateParchePageState extends State<CreateParchePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {},
-            );
-          },
-        ),
         title: const Text('Nuevo parche'),
         backgroundColor: const Color(0xFFFC6411),
       ),
