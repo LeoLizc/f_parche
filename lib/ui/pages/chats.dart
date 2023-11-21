@@ -1,5 +1,6 @@
 import 'package:f_parche/domain/entities/chat.dart';
 import 'package:f_parche/ui/controllers/chat_controller.dart';
+import 'package:f_parche/ui/pages/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,7 +63,11 @@ class ChatItemWidget extends StatelessWidget {
         ),
       ),
       selected: chatItem.read,
-      onTap: () {},
+      onTap: () {
+        Get.to(
+          () => ChatRoomPage(chatId: chatItem.parcheKey),
+        );
+      },
     );
   }
 }
