@@ -1,9 +1,30 @@
+import 'dart:async';
+
+import 'package:f_parche/domain/entities/location.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:loggy/loggy.dart';
 
-class MapaPage extends StatelessWidget {
-  const MapaPage({Key? key}) : super(key: key);
+class MapaPage extends StatefulWidget {
+  MapaPage({Key? key}) : super(key: key);
 
+  @override
+  State<MapaPage> createState() => _MapaPageState();
+}
+
+class _MapaPageState extends State<MapaPage> {
+  final Completer<GoogleMapController> _controller =
+      Completer<GoogleMapController>();
+
+  final _detailsController = TextEditingController();
+
+  Marker _marker = const Marker(
+    markerId: MarkerId('parche'),
+    position: LatLng(10.933721912132299, -74.77986178452828),
+    infoWindow: InfoWindow(title: 'Parche'),
+    icon: BitmapDescriptor.defaultMarker,
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,36 +32,17 @@ class MapaPage extends StatelessWidget {
         title: const Text('Mapa'),
         backgroundColor: const Color(0xFFFC6411),
       ),
+      resizeToAvoidBottomInset: false,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(1.0),
-            child: Container(
-              margin: const EdgeInsets.all(25),
-              child: const Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  'Ingrese texto',
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-          ),
           Expanded(
             child: Container(
               margin: const EdgeInsets.all(25),
-              child: TextFormField(
+              child: TextField(
+                controller: _detailsController,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(15, 0, 0, 0),
-                    ),
-                  ),
-                ),
+                    labelText: "Detalles", border: OutlineInputBorder()),
               ),
             ),
           ),
@@ -52,23 +54,44 @@ class MapaPage extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.90,
                 // color: Colors.black,
                 child: GoogleMap(
-                  mapType: MapType.hybrid,
+                  mapType: MapType.normal,
                   initialCameraPosition: const CameraPosition(
                     target: LatLng(10.933721912132299, -74.77986178452828),
                     zoom: 15,
                   ),
-                  compassEnabled: true,
+                  // compassEnabled: true,
                   myLocationEnabled: true,
-                  onMapCreated: (_) {},
+                  onMapCreated: (GoogleMapController controller) {
+                    _controller.complete(controller);
+                  },
+                  markers: <Marker>{
+                    _marker,
+                  },
+                  onTap: (argument) {
+                    logDebug(argument.toString());
+
+                    setState(() {
+                      _marker = _marker.copyWith(
+                        positionParam: argument,
+                      );
+                    });
+                  },
                 ),
               ),
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.back(
+                  result: Location(
+                latitude: _marker.position.latitude.toString(),
+                longitude: _marker.position.longitude.toString(),
+                address: _detailsController.text,
+              ));
+            },
             //cambiar color
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFFEAA68),
+              backgroundColor: Theme.of(context).colorScheme.primary,
               foregroundColor: Colors.white,
               disabledForegroundColor: Colors.grey,
             ),
