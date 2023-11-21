@@ -22,7 +22,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
 
   @override
   void initState() {
-    _chatController.getChat(widget.chatId);
+    _chatController.initChat(widget.chatId);
     super.initState();
   }
 

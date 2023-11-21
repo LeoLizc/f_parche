@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:f_parche/domain/entities/chat.dart';
+import 'package:f_parche/domain/entities/message.dart';
 import 'package:f_parche/domain/repositories/chat_item_repository.dart';
 import 'package:f_parche/domain/repositories/chat_repository.dart';
 import 'package:f_parche/domain/repositories/messages_repository.dart';
@@ -33,5 +36,10 @@ class ChatUseCases {
     } catch (e) {
       rethrow;
     }
+  }
+
+  StreamSubscription<Message?> subscribeToMessages(
+      String chatId, Function(Message?) listener) {
+    return _messagesRepository.listenNewMessage(chatId, listener);
   }
 }
