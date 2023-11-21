@@ -1,8 +1,28 @@
+import 'package:f_parche/ui/controllers/chat_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-// TODO: TERMINAR
-class ChatRoomPage extends StatelessWidget {
-  const ChatRoomPage({Key? key}) : super(key: key);
+class ChatRoomPage extends StatefulWidget {
+  final String chatId;
+
+  const ChatRoomPage({
+    Key? key,
+    required this.chatId,
+  }) : super(key: key);
+
+  @override
+  State<ChatRoomPage> createState() => _ChatRoomPageState();
+}
+
+class _ChatRoomPageState extends State<ChatRoomPage> {
+  final ChatController _chatController = Get.find();
+
+  @override
+  void initState() {
+    _chatController.getChat(widget.chatId);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
