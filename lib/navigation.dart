@@ -3,6 +3,7 @@ import 'package:f_parche/ui/middlewares/auth_mw.dart';
 import 'package:f_parche/ui/pages/auth/login.dart';
 import 'package:f_parche/ui/pages/auth/signup.dart';
 import 'package:f_parche/ui/pages/chat.dart';
+import 'package:f_parche/ui/pages/chats.dart';
 import 'package:f_parche/ui/pages/crear_parche.dart';
 import 'package:f_parche/ui/pages/home.dart';
 import 'package:f_parche/ui/pages/mapa.dart';
@@ -14,7 +15,7 @@ abstract class Routes {
   static const register = '/register';
   static const parches = '/parches';
   static const create = '/create';
-  static const chat = '/chat';
+  // static const chat = '/chat';
   static const map = '/map';
 }
 
@@ -34,7 +35,7 @@ final appPages = [
   ),
   GetPage(
     name: Routes.parches,
-    page: () => const ParchePage(), // TODO Corregir tamaños
+    page: () => const ChatsPage(),
     middlewares: [ProtectedRoute()],
   ),
   GetPage(
@@ -42,11 +43,11 @@ final appPages = [
     page: () => const CrearParchePage(),
     middlewares: [ProtectedRoute()],
   ),
-  GetPage(
-    name: Routes.chat,
-    page: () => const ChatRoomPage(),
-    middlewares: [ProtectedRoute()],
-  ),
+  // GetPage(
+  //   name: Routes.chat,
+  //   page: () => const ChatRoomPage(),
+  //   middlewares: [ProtectedRoute()],
+  // ),
   GetPage(
     name: Routes.map,
     page: () => MapaPage(),
