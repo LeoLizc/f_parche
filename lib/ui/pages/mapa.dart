@@ -7,7 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loggy/loggy.dart';
 
 class MapaPage extends StatefulWidget {
-  MapaPage({Key? key}) : super(key: key);
+  const MapaPage({Key? key}) : super(key: key);
 
   @override
   State<MapaPage> createState() => _MapaPageState();

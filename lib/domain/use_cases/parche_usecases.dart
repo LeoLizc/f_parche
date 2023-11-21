@@ -55,7 +55,7 @@ class ParcheUseCases {
 
     // * Crear el Chat Item (registrar)
     try {
-      var user = (await _authRepository.getCurrentUser())!;
+      var user = _authRepository.getCurrentUser()!;
       await _chatItemRepository.createChatItem(
         user.id,
         ChatItem(

@@ -200,8 +200,7 @@ class _CrearParchePageState extends State<CrearParchePage> {
                     if (_formKey.currentState!.validate()) {
                       logDebug("Crear Parche");
 
-                      var currentUser =
-                          (await authController.getCurrentUser())!;
+                      var currentUser = (authController.getCurrentUser())!;
 
                       Parche parche = Parche(
                         name: _nameController.text,
@@ -213,8 +212,8 @@ class _CrearParchePageState extends State<CrearParchePage> {
                         members: [
                           Member(
                             key: currentUser.id,
-                            username: (await authController.getCurrentUser())!
-                                .username!,
+                            username:
+                                (authController.getCurrentUser())!.username!,
                           )
                         ],
                       );
