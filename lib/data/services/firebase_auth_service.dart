@@ -35,7 +35,7 @@ class FirebaseAuthService implements AuthService {
   }
 
   @override
-  Future<User?> getCurrentUser() async {
+  User? getCurrentUser() {
     final fb.User? user = _firebaseAuth.currentUser;
     return user == null
         ? null

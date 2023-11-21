@@ -25,7 +25,7 @@ abstract class AuthService {
   Stream<User?> get authStateChanges;
 
   /// Returns a [Future] that completes with the currently authenticated [User].
-  Future<User?> getCurrentUser();
+  User? getCurrentUser();
 
   /// Returns a [Future] that completes with the a boolean representing if the user is logged in.
   Future<bool> isLoggedIn();

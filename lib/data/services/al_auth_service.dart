@@ -34,7 +34,7 @@ class ALAuthService implements AuthService {
   }
 
   @override
-  Future<User?> getCurrentUser() async {
+  User? getCurrentUser() {
     return _user;
   }
 

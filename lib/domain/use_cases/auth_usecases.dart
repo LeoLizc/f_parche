@@ -38,8 +38,8 @@ class AuthUsecases {
     return await _authService.signOut();
   }
 
-  Future<User?> getCurrentUser() async {
-    return await _authService.getCurrentUser();
+  User? getCurrentUser() {
+    return _authService.getCurrentUser();
   }
 
   StreamSubscription<User?> subscribeToAuthChanges(

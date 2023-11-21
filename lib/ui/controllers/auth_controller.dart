@@ -53,7 +53,7 @@ class AuthController extends GetxService {
     _authUseCases.signOut();
   }
 
-  Future<User?> getCurrentUser() {
+  User? getCurrentUser() {
     // implement getCurrentUser logic here
     return _authUseCases.getCurrentUser();
   }

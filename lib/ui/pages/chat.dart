@@ -23,10 +23,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
 
   @override
   void initState() {
-    _authController.getCurrentUser().then((user) {
-      _userId = user!.id;
-      _chatController.getChat(widget.chatId);
-    });
+    _chatController.getChat(widget.chatId);
     super.initState();
   }
 
