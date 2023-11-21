@@ -40,14 +40,14 @@ class Message {
   String message;
   final String sender;
   final String created;
-  String edited;
+  String? edited;
 
   Message({
     this.key,
     required this.message,
     required this.sender,
-    created,
-    required this.edited,
+    String? created,
+    this.edited,
   }) : created = created ?? DateTime.now().toIso8601String();
 
   factory Message.fromMap(Map<String, dynamic> map, String key) {
