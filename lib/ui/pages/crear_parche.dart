@@ -199,7 +199,6 @@ class _CrearParchePageState extends State<CrearParchePage> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       logDebug("Crear Parche");
-                      // TODO: Crear parche
 
                       var currentUser =
                           (await authController.getCurrentUser())!;
