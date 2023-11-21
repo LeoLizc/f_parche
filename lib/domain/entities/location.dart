@@ -30,4 +30,8 @@ class Location {
   factory Location.fromJson(String json) => Location.fromMap(jsonDecode(json));
 
   String toJson() => jsonEncode(toMap());
+
+  @override
+  String toString() =>
+      'Location(latitud: $latitude, longitud: $longitude, direccion: $address)';
 }
