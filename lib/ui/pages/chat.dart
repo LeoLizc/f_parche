@@ -19,7 +19,6 @@ class ChatRoomPage extends StatefulWidget {
 class _ChatRoomPageState extends State<ChatRoomPage> {
   final ChatController _chatController = Get.find();
   final AuthController _authController = Get.find();
-  late final String _userId;
 
   @override
   void initState() {
@@ -29,6 +28,8 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
 
   @override
   Widget build(BuildContext context) {
+    final String userId = _authController.getCurrentUser()!.id;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sala de Chat'),
@@ -47,7 +48,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                     itemBuilder: (context, index) {
                       return ChatMessage(
                         message: _chatController.messages[index],
-                        myUserId: _userId,
+                        myUserId: userId,
                       );
                     },
                   ),
