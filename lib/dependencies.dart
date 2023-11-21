@@ -9,6 +9,7 @@ import 'package:f_parche/data/services/al_auth_service.dart';
 import 'package:f_parche/data/services/firebase_auth_service.dart';
 import 'package:f_parche/data/test_repositories/fake_chat_item_repo.dart';
 import 'package:f_parche/data/test_repositories/fake_chat_repo.dart';
+import 'package:f_parche/data/test_repositories/fake_message_repo.dart';
 import 'package:f_parche/domain/repositories/chat_item_repository.dart';
 import 'package:f_parche/domain/repositories/chat_repository.dart';
 import 'package:f_parche/domain/repositories/messages_repository.dart';
@@ -28,7 +29,7 @@ void loadDependencies() {
   Get.put<ParcheRepository>(FirebaseParcheRepo());
   Get.put<ChatRepository>(FakeChatRepo());
   Get.put<ChatItemRepository>(FakeChatItemRepo());
-  Get.put<MessagesRepository>(FirebaseMessageRepo());
+  Get.put<MessagesRepository>(FakeMessageRepo());
 
   Get.put(AuthUsecases(Get.find<AuthService>()));
   Get.put(ParcheUseCases(

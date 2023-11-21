@@ -42,4 +42,18 @@ class ChatUseCases {
       String chatId, Function(Message?) listener) {
     return _messagesRepository.listenNewMessage(chatId, listener);
   }
+
+  Future<bool> sendMessage(String chatId, String content) async {
+    try {
+      Message message = Message(
+        message: content,
+        sender: _authService.getCurrentUser()!.id,
+      );
+
+      await _messagesRepository.createMessage(chatId, message);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }
