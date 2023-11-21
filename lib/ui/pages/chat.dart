@@ -1,3 +1,5 @@
+import 'package:f_parche/domain/entities/message.dart';
+import 'package:f_parche/ui/controllers/auth_controller.dart';
 import 'package:f_parche/ui/controllers/chat_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,11 +18,15 @@ class ChatRoomPage extends StatefulWidget {
 
 class _ChatRoomPageState extends State<ChatRoomPage> {
   final ChatController _chatController = Get.find();
+  final AuthController _authController = Get.find();
+  late final String _userId;
 
   @override
   void initState() {
-    _chatController.getChat(widget.chatId);
-
+    _authController.getCurrentUser().then((user) {
+      _userId = user!.id;
+      _chatController.getChat(widget.chatId);
+    });
     super.initState();
   }
 
@@ -36,17 +42,19 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
         children: [
           Expanded(
             child: Container(
-              color: Colors.grey[300], // Color de fondo de la sala de chat
-              child: ListView(
-                padding: const EdgeInsets.all(10.0),
-                children: const [
-                  ChatMessage(message: 'Hola, ¿cómo estás?'),
-                  ChatMessage(message: '¡Hola! Estoy bien, ¿y tú?'),
-                  ChatMessage(message: 'Todo bien, gracias.'),
-                  // Agregar más mensajes de chat
-                ],
-              ),
-            ),
+                color: Colors.grey[300], // Color de fondo de la sala de chat
+                child: Obx(
+                  () => ListView.builder(
+                    itemCount: _chatController.messages.length,
+                    padding: const EdgeInsets.all(10.0),
+                    itemBuilder: (context, index) {
+                      return ChatMessage(
+                        message: _chatController.messages[index],
+                        myUserId: _userId,
+                      );
+                    },
+                  ),
+                )),
           ),
           Container(
             padding: const EdgeInsets.all(10.0),
@@ -76,9 +84,14 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
 }
 
 class ChatMessage extends StatelessWidget {
-  final String message;
+  final Message message;
+  final String myUserId;
 
-  const ChatMessage({super.key, required this.message});
+  const ChatMessage({
+    super.key,
+    required this.message,
+    required this.myUserId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +109,18 @@ class ChatMessage extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(10.0),
               color: Colors.white, // Color del mensaje
-              child: Text(message),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    message.sender == myUserId ? 'Tú' : message.sender,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(message.message),
+                ],
+              ),
             ),
           ),
         ],

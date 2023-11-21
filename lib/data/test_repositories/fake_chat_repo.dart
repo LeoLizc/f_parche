@@ -28,7 +28,8 @@ class FakeChatRepo implements ChatRepository {
           sender: '1',
         ),
         Message(
-          message: "Cuarto mensaje",
+          message:
+              "Cuarto mensaje aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           sender: '2',
         ),
       ],
