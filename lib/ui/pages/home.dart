@@ -100,6 +100,7 @@ class HomePage extends StatelessWidget {
                           //     content: Text('Al mapa'),
                           //   ),
                           // );
+                          // ! FIXME Shouldn't be here
                           Get.toNamed(Routes.map);
                         },
                         style: ElevatedButton.styleFrom(

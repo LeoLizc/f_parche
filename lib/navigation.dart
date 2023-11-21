@@ -4,7 +4,6 @@ import 'package:f_parche/ui/pages/auth/login.dart';
 import 'package:f_parche/ui/pages/auth/signup.dart';
 import 'package:f_parche/ui/pages/chat.dart';
 import 'package:f_parche/ui/pages/crear_parche.dart';
-import 'package:f_parche/ui/pages/create_parche.dart';
 import 'package:f_parche/ui/pages/home.dart';
 import 'package:f_parche/ui/pages/mapa.dart';
 import 'package:f_parche/ui/pages/parches.dart';
@@ -40,7 +39,7 @@ final appPages = [
   ),
   GetPage(
     name: Routes.create,
-    page: () => CrearParchePage(),
+    page: () => const CrearParchePage(),
     middlewares: [ProtectedRoute()],
   ),
   GetPage(
@@ -50,7 +49,7 @@ final appPages = [
   ),
   GetPage(
     name: Routes.map,
-    page: () => const MapaPage(),
+    page: () => MapaPage(),
     middlewares: [ProtectedRoute()],
   ),
 ];

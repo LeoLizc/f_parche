@@ -37,7 +37,7 @@ class Parche {
   List<Member> members; // Change the type to List<Member>
   String name;
   String description;
-  String image;
+  String? image;
   final String creator;
   final String creationDate;
   String meetingDate;
@@ -48,7 +48,7 @@ class Parche {
     this.members = const [],
     required this.name,
     required this.description,
-    required this.image,
+    this.image,
     required this.creator,
     creationDate,
     required this.meetingDate,

@@ -1,24 +1,37 @@
 import 'package:f_parche/domain/entities/location.dart';
+import 'package:f_parche/domain/entities/parche.dart';
 import 'package:f_parche/navigation.dart';
+import 'package:f_parche/ui/controllers/auth_controller.dart';
+import 'package:f_parche/ui/controllers/parche_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loggy/loggy.dart';
+import 'package:get/get.dart';
 
-class CrearParchePage extends StatelessWidget {
-  CrearParchePage({Key? key}) : super(key: key);
+class CrearParchePage extends StatefulWidget {
+  const CrearParchePage({Key? key}) : super(key: key);
 
+  @override
+  State<CrearParchePage> createState() => _CrearParchePageState();
+}
+
+class _CrearParchePageState extends State<CrearParchePage> {
   final _formKey = GlobalKey<FormState>();
+
   final _nameController = TextEditingController();
   final _dateController = TextEditingController();
   final _timeController = TextEditingController();
   final _locationController = TextEditingController();
 
+  Location? _location;
+
   @override
   Widget build(BuildContext context) {
-    Location? location;
     _timeController.text = DateFormat('HH:mm').format(DateTime.now());
     _dateController.text = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
+    AuthController authController = Get.find();
+    ParcheController parcheController = Get.find();
     return Scaffold(
       appBar: AppBar(title: const Text("Crear Parche")),
       body: Container(
@@ -175,25 +188,9 @@ class CrearParchePage extends StatelessWidget {
                         }
                         return null;
                       },
-                      onTap: () async {
-                        location = await Navigator.pushNamed<Location?>(
-                          context,
-                          Routes.map,
-                        );
-
-                        if (location != null) {
-                          if (location!.address != null) {
-                            _locationController.text = location!.address!;
-                          } else {
-                            _locationController.text =
-                                "${location!.latitude}, ${location!.longitude}";
-                          }
-                        } else {
-                          _locationController.text = "";
-                        }
-                      },
+                      onTap: _onMapInputTap,
                       readOnly: true,
-                      enabled: false,
+                      // enabled: false,
                     ),
                   ],
                 ),
@@ -203,6 +200,40 @@ class CrearParchePage extends StatelessWidget {
                     if (_formKey.currentState!.validate()) {
                       logDebug("Crear Parche");
                       // TODO: Crear parche
+
+                      var currentUser =
+                          (await authController.getCurrentUser())!;
+
+                      Parche parche = Parche(
+                        name: _nameController.text,
+                        description: '',
+                        creator: currentUser.id,
+                        meetingDate:
+                            '${_dateController.text} ${_timeController.text}',
+                        location: _location!,
+                        members: [
+                          Member(
+                            key: currentUser.id,
+                            username: (await authController.getCurrentUser())!
+                                .username!,
+                          )
+                        ],
+                      );
+
+                      if (await parcheController.createParche(parche)) {
+                        logDebug("Parche creado");
+                        Get.offAllNamed(Routes.home);
+                      } else {
+                        logDebug("No se pudo crear el parche");
+                        logDebug(parche.toJson());
+                        (() {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("No se pudo crear el parche"),
+                            ),
+                          );
+                        })();
+                      }
                     } else {
                       logDebug("No se puede crear el parche");
                     }
@@ -213,6 +244,27 @@ class CrearParchePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _onMapInputTap() async {
+    var received = await Get.toNamed(
+      Routes.map,
+    );
+
+    _location = received as Location?;
+
+    if (_location != null) {
+      logDebug(_location.toString());
+      if (_location!.address != null && _location!.address!.isNotEmpty) {
+        _locationController.text = _location!.address!;
+      } else {
+        _locationController.text =
+            "${_location!.latitude}, ${_location!.longitude}";
+      }
+    } else {
+      logDebug("No se recibió ubicación");
+      _locationController.text = "";
+    }
   }
 }
 
