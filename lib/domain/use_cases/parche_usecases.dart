@@ -60,6 +60,7 @@ class ParcheUseCases {
         user.id,
         ChatItem(
           parcheKey: parche.key!,
+          name: parche.name,
         ),
       );
     } catch (e) {

@@ -5,11 +5,13 @@ class ChatItem {
   final String parcheKey;
   MessagePreview? lastMessage;
   bool read;
+  String name;
 
   ChatItem({
     required this.parcheKey,
     this.lastMessage,
     this.read = true,
+    required this.name,
   });
 
   factory ChatItem.fromMap(Map<String, dynamic> map, String parcheKey) {
@@ -19,6 +21,7 @@ class ChatItem {
           ? MessagePreview.fromMap(map['lastMessage'])
           : null,
       read: map['read'],
+      name: map['name'],
     );
   }
 
@@ -29,6 +32,7 @@ class ChatItem {
     return {
       'lastMessage': lastMessage != null ? lastMessage!.toMap() : null,
       'read': read,
+      'name': name,
     };
   }
 
@@ -38,12 +42,14 @@ class ChatItem {
     String? key,
     MessagePreview? lastMessage,
     bool? read,
+    String? name,
   }) {
     //? Should it be a deep copy?
     return ChatItem(
       parcheKey: key ?? parcheKey,
       lastMessage: lastMessage ?? this.lastMessage,
       read: read ?? this.read,
+      name: name ?? this.name,
     );
   }
 }
