@@ -1,3 +1,4 @@
+import 'package:f_parche/domain/entities/chat.dart';
 import 'package:f_parche/ui/controllers/chat_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,9 +20,7 @@ class ChatsPage extends StatelessWidget {
             itemBuilder: (context, index) {
               final chatItem = chatController.chatItems[index];
               return ChatItemWidget(
-                name: chatItem.name,
-                lastMessage: chatItem.lastMessage?.message ?? 'no hay mensajes',
-                read: chatItem.read,
+                chatItem: chatItem,
               );
             },
           ),
@@ -30,17 +29,11 @@ class ChatsPage extends StatelessWidget {
 }
 
 class ChatItemWidget extends StatelessWidget {
-  final String name;
-  final String lastMessage;
-  final String lastMessageTime;
-  final bool read;
+  final ChatItem chatItem;
 
   const ChatItemWidget({
     super.key,
-    required this.name,
-    this.lastMessage = 'no hay mensajes',
-    this.lastMessageTime = '10:30 AM',
-    this.read = true,
+    required this.chatItem,
   });
 
   @override
@@ -51,24 +44,24 @@ class ChatItemWidget extends StatelessWidget {
         backgroundColor: Colors.blue,
       ),
       title: Text(
-        name,
+        chatItem.name,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
       ),
       subtitle: Text(
-        lastMessage,
+        chatItem.lastMessage?.message ?? 'no hay mensajes',
         style: const TextStyle(
           color: Colors.grey,
         ),
       ),
       trailing: Text(
-        lastMessageTime,
+        chatItem.lastMessage?.date.toString() ?? '',
         style: const TextStyle(
           color: Colors.grey,
         ),
       ),
-      selected: read,
+      selected: chatItem.read,
       onTap: () {},
     );
   }
