@@ -125,7 +125,7 @@ class ChatMessage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    message.sender == myUserId ? 'Tú' : message.sender,
+                    message.authorId == myUserId ? 'Tú' : message.author,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

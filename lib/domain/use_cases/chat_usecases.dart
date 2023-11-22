@@ -47,7 +47,8 @@ class ChatUseCases {
     try {
       Message message = Message(
         message: content,
-        sender: _authService.getCurrentUser()!.id,
+        authorId: _authService.getCurrentUser()!.id,
+        author: _authService.getCurrentUser()!.username!,
       );
 
       await _messagesRepository.createMessage(chatId, message);

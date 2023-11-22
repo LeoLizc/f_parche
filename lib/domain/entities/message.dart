@@ -38,14 +38,16 @@ class MessagePreview {
 class Message {
   final String? key;
   String message;
-  final String sender;
+  final String authorId;
+  final String author;
   final String created;
   String? edited;
 
   Message({
     this.key,
     required this.message,
-    required this.sender,
+    required this.authorId,
+    required this.author,
     String? created,
     this.edited,
   }) : created = created ?? DateTime.now().toIso8601String();
@@ -54,9 +56,10 @@ class Message {
     return Message(
       key: key,
       message: map['message'],
-      sender: map['sender'],
+      authorId: map['authorId'],
       created: map['created'],
       edited: map['edited'],
+      author: map['author'],
     );
   }
 
@@ -66,9 +69,10 @@ class Message {
   Map<String, dynamic> toMap() {
     return {
       'message': message,
-      'sender': sender,
+      'authorId': authorId,
       'created': created,
       'edited': edited,
+      'author': author,
     };
   }
 
@@ -77,16 +81,18 @@ class Message {
   Message copyWith({
     String? key,
     String? message,
-    String? sender,
+    String? authorId,
     String? created,
     String? edited,
+    String? author,
   }) {
     return Message(
       key: key ?? this.key,
       message: message ?? this.message,
-      sender: sender ?? this.sender,
+      authorId: authorId ?? this.authorId,
       created: created ?? this.created,
       edited: edited ?? this.edited,
+      author: author ?? this.author,
     );
   }
 }

@@ -17,20 +17,24 @@ class FakeChatRepo implements ChatRepository {
       messages: [
         Message(
           message: "Primer mensaje",
-          sender: '1',
+          authorId: '1',
+          author: 'Victor',
         ),
         Message(
           message: "Segundo mensaje",
-          sender: '2',
+          authorId: '2',
+          author: 'Joel',
         ),
         Message(
           message: "Tercer mensaje",
-          sender: '1',
+          authorId: '1',
+          author: 'Victor',
         ),
         Message(
           message:
               "Cuarto mensaje aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          sender: '2',
+          authorId: '2',
+          author: 'Joel',
         ),
       ],
     );
