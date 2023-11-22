@@ -24,7 +24,7 @@ class ChatUseCases {
         _messagesRepository = messagesRepository;
 
   Future<List<ChatItem>> getChatItems() async {
-    final user = await _authService.getCurrentUser();
+    final user = _authService.getCurrentUser();
     final chatItems = await _chatItemRepository.getChatItems(user!.id);
     return chatItems;
   }
