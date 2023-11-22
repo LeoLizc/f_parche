@@ -25,11 +25,11 @@ import 'package:get/get.dart';
 import 'ui/controllers/auth_controller.dart';
 
 void loadDependencies() {
-  Get.put<AuthService>(ALAuthService());
+  Get.put<AuthService>(FirebaseAuthService());
   Get.put<ParcheRepository>(FirebaseParcheRepo());
-  Get.put<ChatRepository>(FakeChatRepo());
-  Get.put<ChatItemRepository>(FakeChatItemRepo());
-  Get.put<MessagesRepository>(FakeMessageRepo());
+  Get.put<ChatRepository>(FirebaseChatRepo());
+  Get.put<ChatItemRepository>(FirebaseChatItemRepo());
+  Get.put<MessagesRepository>(FirebaseMessageRepo());
 
   Get.put(AuthUsecases(Get.find<AuthService>()));
   Get.put(ParcheUseCases(
