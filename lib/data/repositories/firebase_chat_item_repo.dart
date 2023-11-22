@@ -10,9 +10,10 @@ class FirebaseChatItemRepo implements ChatItemRepository {
 
   @override
   Future<ChatItem> createChatItem(String userKey, ChatItem chatItem) async {
-    final newChatItemRef = _chatItemsCollection.child(userKey).push();
+    final newChatItemRef =
+        _chatItemsCollection.child(userKey).child(chatItem.parcheKey);
     newChatItemRef.set(chatItem.toMap());
-    return chatItem.copyWith(key: newChatItemRef.key);
+    return chatItem;
   }
 
   @override

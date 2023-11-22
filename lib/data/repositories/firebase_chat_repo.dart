@@ -7,9 +7,9 @@ class FirebaseChatRepo implements ChatRepository {
 
   @override
   Future<Chat> addChat(Chat chat) async {
-    final newChatRef = _chatsCollection.push();
+    final newChatRef = _chatsCollection.child(chat.parcheKey);
     newChatRef.set(chat.toMap());
-    return chat.copyWith(key: newChatRef.key);
+    return chat;
   }
 
   @override
