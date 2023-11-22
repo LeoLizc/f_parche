@@ -10,7 +10,7 @@ class ChatsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ChatController chatController = Get.find();
-
+    chatController.getChatItems();
     return Scaffold(
         appBar: AppBar(
           title: const Text('Chats'),

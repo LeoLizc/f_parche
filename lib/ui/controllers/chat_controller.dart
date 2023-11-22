@@ -24,9 +24,12 @@ class ChatController extends GetxController {
   void onInit() {
     logDebug('ChatController Init');
 
-    _chatUseCases.getChatItems().then((value) => _chatItems.addAll(value));
-
     super.onInit();
+  }
+
+  void getChatItems() {
+    _chatItems.clear();
+    _chatUseCases.getChatItems().then((value) => _chatItems.addAll(value));
   }
 
   void subscribeToChatItems(String id) {
