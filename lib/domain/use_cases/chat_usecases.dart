@@ -51,6 +51,8 @@ class ChatUseCases {
       );
 
       await _messagesRepository.createMessage(chatId, message);
+
+      //TODO: add to chatList and notify
       return true;
     } catch (e) {
       return false;

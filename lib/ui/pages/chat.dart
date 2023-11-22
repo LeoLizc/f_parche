@@ -19,6 +19,7 @@ class ChatRoomPage extends StatefulWidget {
 class _ChatRoomPageState extends State<ChatRoomPage> {
   final ChatController _chatController = Get.find();
   final AuthController _authController = Get.find();
+  final TextEditingController _textController = TextEditingController();
 
   @override
   void initState() {
@@ -32,10 +33,15 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sala de Chat'),
-        backgroundColor:
-            const Color(0xFFFC6411), // Cambiar el color de la AppBar
-      ),
+          title: const Text('Sala de Chat'),
+          backgroundColor: const Color(0xFFFC6411),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              _chatController.disposeListenMessages();
+              Get.back();
+            },
+          )),
       body: Column(
         children: [
           Expanded(
@@ -59,17 +65,25 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
             color: Colors.white, // Color de fondo del área de entrada de texto
             child: Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: _textController,
+                    decoration: const InputDecoration(
                       hintText: 'Escribe un mensaje...',
                     ),
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.person),
+                  icon: const Icon(Icons.send),
                   onPressed: () {
-                    // Agregar la lógica para enviar el mensaje
+                    if (_textController.text.isNotEmpty) {
+                      _chatController.sendMessage(
+                        _textController.text,
+                      );
+                      _textController.clear();
+
+                      FocusScope.of(context).unfocus();
+                    }
                   },
                 ),
               ],
