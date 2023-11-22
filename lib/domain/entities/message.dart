@@ -11,7 +11,7 @@ class MessagePreview {
     required this.author,
   });
 
-  factory MessagePreview.fromMap(Map<String, dynamic> map) {
+  factory MessagePreview.fromMap(Map<dynamic, dynamic> map) {
     return MessagePreview(
       message: map['message'],
       date: DateTime.parse(map['date']),
@@ -52,7 +52,7 @@ class Message {
     this.edited,
   }) : created = created ?? DateTime.now().toIso8601String();
 
-  factory Message.fromMap(Map<String, dynamic> map, String key) {
+  factory Message.fromMap(Map<dynamic, dynamic> map, String key) {
     return Message(
       key: key,
       message: map['message'],

@@ -23,10 +23,10 @@ class FirebaseMessageRepo implements MessagesRepository {
       return [];
     }
 
-    final messagesMap = messagesEvent.snapshot.value as Map<String, dynamic>;
+    final messagesMap = messagesEvent.snapshot.value as Map<dynamic, dynamic>;
     final messages = messagesMap.entries
         .map((entry) =>
-            Message.fromMap(entry.value as Map<String, dynamic>, entry.key))
+            Message.fromMap(entry.value as Map<dynamic, dynamic>, entry.key))
         .toList();
 
     return messages;
@@ -46,10 +46,10 @@ class FirebaseMessageRepo implements MessagesRepository {
         return <Message>[];
       }
 
-      final messagesMap = event.snapshot.value as Map<String, dynamic>;
+      final messagesMap = event.snapshot.value as Map<dynamic, dynamic>;
       final messages = messagesMap.entries
           .map((entry) =>
-              Message.fromMap(entry.value as Map<String, dynamic>, entry.key))
+              Message.fromMap(entry.value as Map<dynamic, dynamic>, entry.key))
           .toList();
 
       return messages;
@@ -70,7 +70,7 @@ class FirebaseMessageRepo implements MessagesRepository {
       }
 
       return Message.fromMap(
-          event.snapshot.value as Map<String, dynamic>, event.snapshot.key!);
+          event.snapshot.value as Map<dynamic, dynamic>, event.snapshot.key!);
     }).listen(onData);
 
     return messagesSubscription;

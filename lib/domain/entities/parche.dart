@@ -11,7 +11,7 @@ class Member {
       required this.username,
       this.avatar}); // Update the constructor
 
-  factory Member.fromMap(Map<String, dynamic> map, String key) {
+  factory Member.fromMap(Map<dynamic, dynamic> map, String key) {
     return Member(
       key: key,
       username: map['username'],
@@ -55,7 +55,7 @@ class Parche {
     required this.location,
   }) : creationDate = creationDate ?? DateTime.now().toString();
 
-  factory Parche.fromMap(Map<String, dynamic> json, String key) {
+  factory Parche.fromMap(Map<dynamic, dynamic> json, String key) {
     List<Member> members = [];
     json['miembros'].forEach((key, value) {
       members.add(Member.fromMap(value, key));

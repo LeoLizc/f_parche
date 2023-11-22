@@ -23,7 +23,7 @@ class FirebaseChatItemRepo implements ChatItemRepository {
       return [];
     }
 
-    final chatItemsMap = chatItemsEvent.snapshot.value as Map<String, dynamic>;
+    final chatItemsMap = chatItemsEvent.snapshot.value as Map<dynamic, dynamic>;
     final chatItems = chatItemsMap.entries
         .map((entry) => ChatItem.fromMap(entry.value, entry.key))
         .toList();
@@ -42,7 +42,7 @@ class FirebaseChatItemRepo implements ChatItemRepository {
         return <ChatItem>[];
       }
 
-      final chatItemsMap = event.snapshot.value as Map<String, dynamic>;
+      final chatItemsMap = event.snapshot.value as Map<dynamic, dynamic>;
       final chatItems = chatItemsMap.entries
           .map((entry) => ChatItem.fromMap(entry.value, entry.key))
           .toList();
@@ -58,7 +58,7 @@ class FirebaseChatItemRepo implements ChatItemRepository {
   ) {
     final newChatItemStream = _chatItemsCollection.child(userKey).onChildAdded;
     return newChatItemStream.map((event) {
-      final chatItemMap = event.snapshot.value as Map<String, dynamic>;
+      final chatItemMap = event.snapshot.value as Map<dynamic, dynamic>;
 
       if (chatItemMap.isEmpty) {
         return null;

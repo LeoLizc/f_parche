@@ -20,7 +20,7 @@ class FirebaseChatRepo implements ChatRepository {
       return null;
     }
 
-    final chatMap = chatEvent.snapshot.value as Map<String, dynamic>;
+    final chatMap = chatEvent.snapshot.value as Map<dynamic, dynamic>;
     final chat = Chat.fromMap(chatMap, id);
 
     return chat;

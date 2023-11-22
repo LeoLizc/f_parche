@@ -6,7 +6,7 @@ class Friend {
 
   Friend({required this.key, required this.nickName});
 
-  factory Friend.fromMap(Map<String, dynamic> map, String key) {
+  factory Friend.fromMap(Map<dynamic, dynamic> map, String key) {
     return Friend(
       key: key,
       nickName: map['nickName'],

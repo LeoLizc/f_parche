@@ -147,7 +147,7 @@ class _CrearParchePageState extends State<CrearParchePage> {
                             shape: const CircleBorder(),
                             padding: const EdgeInsets.all(13.0),
                           ),
-                          onPressed: () {},
+                          onPressed: null, //TODO: Buscar miembros
                           child: const Icon(Icons.search),
                         ),
                       ],

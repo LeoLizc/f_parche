@@ -11,7 +11,7 @@ class Location {
     this.address, // Update the constructor
   });
 
-  factory Location.fromMap(Map<String, dynamic> map) {
+  factory Location.fromMap(Map<dynamic, dynamic> map) {
     return Location(
       latitude: map['latitud'],
       longitude: map['longitud'],

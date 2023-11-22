@@ -14,7 +14,7 @@ class ChatItem {
     required this.name,
   });
 
-  factory ChatItem.fromMap(Map<String, dynamic> map, String parcheKey) {
+  factory ChatItem.fromMap(Map<dynamic, dynamic> map, String parcheKey) {
     return ChatItem(
       parcheKey: parcheKey,
       lastMessage: map['lastMessage'] != null
@@ -65,7 +65,7 @@ class Chat {
     this.messages = const [],
   });
 
-  factory Chat.fromMap(Map<String, dynamic> map, String id) {
+  factory Chat.fromMap(Map<dynamic, dynamic> map, String id) {
     List<Message> messages = [];
     (map['messages'] as Map).forEach((key, value) {
       messages.add(Message.fromMap(value, key));

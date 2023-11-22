@@ -21,7 +21,7 @@ class FirebaseParcheRepo implements ParcheRepository {
       return null;
     }
 
-    return Parche.fromMap(parcheEvent.snapshot.value as Map<String, dynamic>,
+    return Parche.fromMap(parcheEvent.snapshot.value as Map<dynamic, dynamic>,
         parcheEvent.snapshot.key!);
   }
 }

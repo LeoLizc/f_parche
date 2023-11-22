@@ -38,7 +38,11 @@ class ChatController extends GetxController {
 
   void initChat(String chatId) {
     _chatUseCases.getChat(chatId).then((value) {
-      _chat = value!;
+      if (value == null) {
+        logError('Chat not found for chatId: $chatId');
+        return;
+      }
+      _chat = value;
       _messages.clear();
       _messages.addAll(_chat.messages);
       _chat.messages.clear();
