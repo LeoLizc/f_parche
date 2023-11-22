@@ -58,6 +58,7 @@ class ChatController extends GetxController {
 
   void disposeListenMessages() {
     _subscription?.cancel();
+    _messages.clear();
   }
 
   void sendMessage(String text) {

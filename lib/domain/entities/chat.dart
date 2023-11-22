@@ -62,11 +62,15 @@ class Chat {
   Chat({
     required this.parcheKey,
     required this.chatName,
-    this.messages = const [],
-  });
+    messages,
+  }) : messages = messages ?? [];
 
   factory Chat.fromMap(Map<dynamic, dynamic> map, String id) {
     List<Message> messages = [];
+    if (map['messages'] == null) {
+      return Chat(parcheKey: id, chatName: map['chatName']);
+    }
+
     (map['messages'] as Map).forEach((key, value) {
       messages.add(Message.fromMap(value, key));
     });

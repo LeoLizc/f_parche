@@ -9,7 +9,7 @@ class FirebaseMessageRepo implements MessagesRepository {
 
   @override
   Future<Message> createMessage(String chatId, Message message) async {
-    final newMessageRef = _chatsCollection.child(chatId).push();
+    final newMessageRef = _chatsCollection.child('$chatId/messages').push();
     newMessageRef.set(message.toMap());
     return message.copyWith(key: newMessageRef.key);
   }

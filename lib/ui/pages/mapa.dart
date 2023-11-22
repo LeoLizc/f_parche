@@ -54,7 +54,7 @@ class _MapaPageState extends State<MapaPage> {
                 width: MediaQuery.of(context).size.width * 0.90,
                 // color: Colors.black,
                 child: GoogleMap(
-                  mapType: MapType.normal,
+                  mapType: MapType.satellite,
                   initialCameraPosition: const CameraPosition(
                     target: LatLng(10.933721912132299, -74.77986178452828),
                     zoom: 15,
