@@ -2,12 +2,10 @@ import 'package:f_parche/ui/controllers/auth_controller.dart';
 import 'package:f_parche/ui/middlewares/auth_mw.dart';
 import 'package:f_parche/ui/pages/auth/login.dart';
 import 'package:f_parche/ui/pages/auth/signup.dart';
-import 'package:f_parche/ui/pages/chat.dart';
 import 'package:f_parche/ui/pages/chats.dart';
 import 'package:f_parche/ui/pages/crear_parche.dart';
 import 'package:f_parche/ui/pages/home.dart';
 import 'package:f_parche/ui/pages/mapa.dart';
-import 'package:f_parche/ui/pages/parches.dart';
 import 'package:get/get.dart';
 
 abstract class Routes {
@@ -50,7 +48,7 @@ final appPages = [
   // ),
   GetPage(
     name: Routes.map,
-    page: () => MapaPage(),
+    page: () => const MapaPage(),
     middlewares: [ProtectedRoute()],
   ),
 ];
