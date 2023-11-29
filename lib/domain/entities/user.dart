@@ -1,18 +1,18 @@
 import 'dart:convert';
 
-class User {
+class UserDetail {
   final String key;
   String username;
   String? picture;
 
-  User({
+  UserDetail({
     required this.key,
     required this.username,
     this.picture,
   });
 
-  factory User.fromMap(Map<dynamic, dynamic> map, String key) {
-    return User(
+  factory UserDetail.fromMap(Map<dynamic, dynamic> map, String key) {
+    return UserDetail(
       key: key,
       username: map['username'],
       picture: map['picture'],
@@ -26,17 +26,17 @@ class User {
     };
   }
 
-  factory User.fromJson(String source, String key) =>
-      User.fromMap(jsonDecode(source), key);
+  factory UserDetail.fromJson(String source, String key) =>
+      UserDetail.fromMap(jsonDecode(source), key);
 
   String toJson() => jsonEncode(toMap());
 
-  User copyWith({
+  UserDetail copyWith({
     String? key,
     String? username,
     String? picture,
   }) {
-    return User(
+    return UserDetail(
       key: key ?? this.key,
       username: username ?? this.username,
       picture: picture ?? this.picture,
