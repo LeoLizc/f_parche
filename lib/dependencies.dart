@@ -20,6 +20,7 @@ import 'package:f_parche/domain/services/auth_service.dart';
 import 'package:f_parche/domain/use_cases/auth_usecases.dart';
 import 'package:f_parche/domain/use_cases/chat_usecases.dart';
 import 'package:f_parche/domain/use_cases/parche_usecases.dart';
+import 'package:f_parche/domain/use_cases/user_usecases.dart';
 import 'package:f_parche/ui/controllers/chat_controller.dart';
 import 'package:f_parche/ui/controllers/parche_controller.dart';
 import 'package:get/get.dart';
@@ -50,12 +51,18 @@ void loadDependencies() {
     chatRepository: Get.find<ChatRepository>(),
     messagesRepository: Get.find<MessagesRepository>(),
   ));
+  Get.put(
+    UserUseCases(
+      Get.find<UserRepository>(),
+    ),
+  );
 
   Get.put<AuthController>(AuthController(
     Get.find<AuthUsecases>(),
   ));
   Get.put(ParcheController(
     parcheUseCases: Get.find<ParcheUseCases>(),
+    userUseCases: Get.find<UserUseCases>(),
   ));
   Get.put(
     ChatController(
