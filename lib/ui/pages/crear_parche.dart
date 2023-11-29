@@ -25,13 +25,20 @@ class _CrearParchePageState extends State<CrearParchePage> {
 
   Location? _location;
 
+  final AuthController _authController = Get.find();
+  final ParcheController _parcheController = Get.find();
+
+  int _cont = 0;
+
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     _timeController.text = DateFormat('HH:mm').format(DateTime.now());
     _dateController.text = DateFormat('yyyy-MM-dd').format(DateTime.now());
+  }
 
-    AuthController authController = Get.find();
-    ParcheController parcheController = Get.find();
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Crear Parche")),
       body: Container(
@@ -196,52 +203,51 @@ class _CrearParchePageState extends State<CrearParchePage> {
                 ),
               ),
               ElevatedButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      logDebug("Crear Parche");
-
-                      var currentUser = (authController.getCurrentUser())!;
-
-                      Parche parche = Parche(
-                        name: _nameController.text,
-                        description: '',
-                        creator: currentUser.id,
-                        meetingDate:
-                            '${_dateController.text} ${_timeController.text}',
-                        location: _location!,
-                        members: [
-                          Member(
-                            key: currentUser.id,
-                            username:
-                                (authController.getCurrentUser())!.username!,
-                          )
-                        ],
-                      );
-
-                      if (await parcheController.createParche(parche)) {
-                        logDebug("Parche creado");
-                        Get.offAllNamed(Routes.home);
-                      } else {
-                        logDebug("No se pudo crear el parche");
-                        logDebug(parche.toJson());
-                        (() {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("No se pudo crear el parche"),
-                            ),
-                          );
-                        })();
-                      }
-                    } else {
-                      logDebug("No se puede crear el parche");
-                    }
-                  },
-                  child: const Text("Crear Parche"))
+                  onPressed: _onSubmitForm, child: const Text("Crear Parche"))
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _onSubmitForm() async {
+    if (_formKey.currentState!.validate()) {
+      logDebug("Crear Parche");
+
+      var currentUser = (_authController.getCurrentUser())!;
+
+      Parche parche = Parche(
+        name: _nameController.text,
+        description: '',
+        creator: currentUser.id,
+        meetingDate: '${_dateController.text} ${_timeController.text}',
+        location: _location!,
+        members: [
+          Member(
+            key: currentUser.id,
+            username: (_authController.getCurrentUser())!.username!,
+          )
+        ],
+      );
+
+      if (await _parcheController.createParche(parche)) {
+        logDebug("Parche creado");
+        Get.offAllNamed(Routes.home);
+      } else {
+        logDebug("No se pudo crear el parche");
+        logDebug(parche.toJson());
+        (() {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("No se pudo crear el parche"),
+            ),
+          );
+        })();
+      }
+    } else {
+      logDebug("No se puede crear el parche");
+    }
   }
 
   void _onMapInputTap() async {
