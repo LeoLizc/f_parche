@@ -7,7 +7,7 @@ class FirebaseUserRepo implements UserRepository {
 
   @override
   Future<UserDetail> createUserDetail(UserDetail userDetail) async {
-    final newUserRef = _userCollection.push();
+    final newUserRef = _userCollection.child(userDetail.key);
     newUserRef.set(userDetail.toMap());
     return userDetail.copyWith(key: newUserRef.key);
   }
