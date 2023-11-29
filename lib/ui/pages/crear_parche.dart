@@ -28,8 +28,6 @@ class _CrearParchePageState extends State<CrearParchePage> {
   final AuthController _authController = Get.find();
   final ParcheController _parcheController = Get.find();
 
-  int _cont = 0;
-
   @override
   void initState() {
     super.initState();

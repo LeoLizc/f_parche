@@ -4,7 +4,7 @@ import 'package:f_parche/domain/entities/message.dart';
 import 'package:f_parche/domain/repositories/messages_repository.dart';
 
 class FakeMessageRepo implements MessagesRepository {
-  StreamController<Message?> _newMessageStreamController =
+  final StreamController<Message?> _newMessageStreamController =
       StreamController<Message?>.broadcast();
 
   @override
