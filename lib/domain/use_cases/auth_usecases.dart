@@ -1,12 +1,18 @@
 import 'dart:async';
 
 import 'package:f_parche/domain/entities/auth_entities.dart';
+import 'package:f_parche/domain/entities/user.dart';
+import 'package:f_parche/domain/repositories/user_repository.dart';
 import 'package:f_parche/domain/services/auth_service.dart';
 
 class AuthUsecases {
   final AuthService _authService;
+  final UserRepository _userRepository;
 
-  AuthUsecases(this._authService);
+  AuthUsecases(
+    this._authService,
+    this._userRepository,
+  );
 
   Future<bool> signInWithEmailAndPassword(String email, String password) async {
     try {
@@ -23,10 +29,17 @@ class AuthUsecases {
     String password,
   ) async {
     try {
-      await _authService.createUserWithEmailAndPassword(
+      var user = await _authService.createUserWithEmailAndPassword(
         username,
         email,
         password,
+      );
+
+      await _userRepository.createUserDetail(
+        UserDetail(
+          key: user.id,
+          username: username,
+        ),
       );
       return true;
     } catch (e) {
