@@ -1,5 +1,6 @@
 import 'package:f_parche/navigation.dart';
 import 'package:f_parche/ui/controllers/auth_controller.dart';
+import 'package:f_parche/ui/widgets/clock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -43,15 +44,7 @@ class HomePage extends StatelessWidget {
             flex: 0,
             child: SizedBox(height: 20.0),
           ),
-          const Text(
-            '8:30 P.M.',
-            style: TextStyle(
-              fontSize: 44.0,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Digital Numbers',
-            ),
-          ),
+          const Clock(),
           const Spacer(flex: 2),
           Expanded(
             flex: 0,
