@@ -43,7 +43,6 @@ void loadDependencies() {
     chatItemRepository: Get.find<ChatItemRepository>(),
     parcheRepository: Get.find<ParcheRepository>(),
     chatRepository: Get.find<ChatRepository>(),
-    authRepository: Get.find<AuthService>(),
   ));
   Get.put(ChatUseCases(
     chatItemRepository: Get.find<ChatItemRepository>(),

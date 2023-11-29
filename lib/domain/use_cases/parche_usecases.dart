@@ -2,7 +2,6 @@ import 'package:f_parche/domain/entities/chat.dart';
 import 'package:f_parche/domain/repositories/chat_item_repository.dart';
 import 'package:f_parche/domain/repositories/chat_repository.dart';
 import 'package:f_parche/domain/repositories/parche_repository.dart';
-import 'package:f_parche/domain/services/auth_service.dart';
 import 'package:loggy/loggy.dart';
 
 import '../entities/parche.dart';
@@ -11,17 +10,14 @@ class ParcheUseCases {
   final ChatItemRepository _chatItemRepository;
   final ParcheRepository _parcheRepository;
   final ChatRepository _chatRepository;
-  final AuthService _authRepository; // Added property
 
   ParcheUseCases({
     required ChatItemRepository chatItemRepository,
     required ParcheRepository parcheRepository,
-    required ChatRepository chatRepository,
-    required AuthService authRepository, // Added parameter
+    required ChatRepository chatRepository, // Added parameter
   })  : _chatItemRepository = chatItemRepository,
         _parcheRepository = parcheRepository,
-        _chatRepository = chatRepository,
-        _authRepository = authRepository;
+        _chatRepository = chatRepository;
   Future<bool> createParche(Parche parche) async {
     /*
     - Crea el Parche en si (Registrar)
@@ -55,14 +51,19 @@ class ParcheUseCases {
 
     // * Crear el Chat Item (registrar)
     try {
-      var user = _authRepository.getCurrentUser()!;
-      await _chatItemRepository.createChatItem(
-        user.id,
-        ChatItem(
-          parcheKey: parche.key!,
-          name: parche.name,
-        ),
-      );
+      var futureMembers = parche.members
+          .map(
+            (member) => _chatItemRepository.createChatItem(
+              member.key,
+              ChatItem(
+                parcheKey: parche.key!,
+                name: parche.name,
+              ),
+            ),
+          )
+          .toList();
+
+      await Future.wait(futureMembers);
     } catch (e) {
       logError(e);
       // TODO: Eliminar el parche
