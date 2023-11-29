@@ -1,5 +1,6 @@
 import 'package:f_parche/domain/entities/location.dart';
 import 'package:f_parche/domain/entities/parche.dart';
+import 'package:f_parche/domain/entities/user.dart';
 import 'package:f_parche/navigation.dart';
 import 'package:f_parche/ui/controllers/auth_controller.dart';
 import 'package:f_parche/ui/controllers/parche_controller.dart';
@@ -22,11 +23,14 @@ class _CrearParchePageState extends State<CrearParchePage> {
   final _dateController = TextEditingController();
   final _timeController = TextEditingController();
   final _locationController = TextEditingController();
+  final _memberIdController = TextEditingController();
 
   Location? _location;
 
   final AuthController _authController = Get.find();
   final ParcheController _parcheController = Get.find();
+
+  final _members = <UserDetail>[];
 
   @override
   void initState() {
@@ -135,6 +139,7 @@ class _CrearParchePageState extends State<CrearParchePage> {
                       children: [
                         Expanded(
                           child: TextFormField(
+                            controller: _memberIdController,
                             decoration: const InputDecoration(
                               labelText: 'Añade User Id',
                               border: OutlineInputBorder(),
@@ -143,7 +148,7 @@ class _CrearParchePageState extends State<CrearParchePage> {
                             validator: (value) {
                               return null;
                             },
-                            enabled: false,
+                            // enabled: false,
                           ),
                         ),
                         const InputSpacer(),
@@ -152,7 +157,32 @@ class _CrearParchePageState extends State<CrearParchePage> {
                             shape: const CircleBorder(),
                             padding: const EdgeInsets.all(13.0),
                           ),
-                          onPressed: null, //TODO: Buscar miembros
+                          onPressed: () async {
+                            final userId = _memberIdController.text;
+
+                            if (userId.isEmpty) {
+                              return;
+                            }
+
+                            final user =
+                                await _parcheController.findUserById(userId);
+
+                            if (user != null) {
+                              _memberIdController.text = "";
+                              setState(() {
+                                //TODO: Verificar que el miembro no esté ya en la lista
+                                _members.add(user);
+                              });
+                            } else {
+                              (() {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("No se encontró el usuario"),
+                                  ),
+                                );
+                              })();
+                            }
+                          },
                           child: const Icon(Icons.search),
                         ),
                       ],
@@ -160,7 +190,6 @@ class _CrearParchePageState extends State<CrearParchePage> {
                     const InputSpacer(),
                     Container(
                       height: 200,
-                      // color: Colors.amber[600],
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -169,14 +198,37 @@ class _CrearParchePageState extends State<CrearParchePage> {
                         ),
                         color: Colors.black12,
                       ),
-                      child: const Center(
-                        child: Text(
-                          "Lista de Tripulantes",
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                      child: ListView.separated(
+                        itemCount: _members.length,
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 2),
+                        itemBuilder: (context, index) {
+                          return Container(
+                            // height: 50,
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    6), // Adjust the border radius here
+                                side: const BorderSide(
+                                    width: 1.5, color: Colors.grey),
+                              ),
+                              color: Colors
+                                  .white, // Set the background color of each ListTile
+                            ),
+                            child: ListTile(
+                              title: Text(_members[index].username),
+                              subtitle: Text(_members[index].key),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _members.removeAt(index);
+                                  });
+                                },
+                                icon: const Icon(Icons.delete),
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                     const InputSpacer(),
@@ -225,7 +277,11 @@ class _CrearParchePageState extends State<CrearParchePage> {
           Member(
             key: currentUser.id,
             username: (_authController.getCurrentUser())!.username!,
-          )
+          ),
+          ..._members.map((e) => Member(
+                key: e.key,
+                username: e.username,
+              ))
         ],
       );
 
